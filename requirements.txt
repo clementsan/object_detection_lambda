@@ -1,0 +1,12 @@
+--find-links https://download.pytorch.org/whl/torch_stable.html
+
+numpy==1.26.4
+pillow==11.0.0
+torch==2.2.2+cpu
+torchvision==0.17.2+cpu
+gradio==5.5.0
+matplotlib==3.9.2
+transformers==4.46.2
+requests==2.32.3
+python-dotenv==1.0.1
+pytest==8.3.3
