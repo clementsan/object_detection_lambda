@@ -30,7 +30,7 @@ def retrieve_api():
 
 #@spaces.GPU
 def detect(image_path, model_id, threshold):
-    print("\n Gradio - Object detection...")
+    print("\n UI - Object detection...")
     print("\t ML model:", list_models[model_id])
 
     with open(image_path, 'rb') as image_file:
@@ -41,7 +41,6 @@ def detect(image_path, model_id, threshold):
         API_endpoint = AWS_API + "/2015-03-31/functions/function/invocations"
     else:
         API_endpoint = AWS_API + "/dev/detect"
-    print("\t API_Endpoint: ", API_endpoint)
 
     # Encode the image data in base64
     encoded_image = base64.b64encode(image_bytes).decode('utf-8')
@@ -62,10 +61,7 @@ def detect(image_path, model_id, threshold):
         # Process the response
         response_json = response.json()
         print('\t API response', response_json)
-        print('\t API response - type', type(response_json))
         prediction_dict = json.loads(response_json["body"])
-        print('\t API body prediction_dict', prediction_dict)
-        print('\t API body prediction_dict - type', type(prediction_dict))
     else:
         prediction_dict = {"Error": response.status_code}
         gr.Error(f"\t API Error: {response.status_code}")
