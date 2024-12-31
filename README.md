@@ -64,6 +64,8 @@ python
 
 ### 2.1. Pushing the docker container to AWS ECR
 
+<details>
+
 Steps:
  - Create new ECR Repository via aws console
 
@@ -84,7 +86,11 @@ Example: ```object-detection-lambda```
 
 [Link to AWS ECR Documention](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html)
 
+</details>
+
 ### 2.2. Creating and testing a Lambda function
+
+<details>
 
 <b>Steps</b>: 
  - Create function from container image
@@ -99,8 +105,11 @@ Advanced notes:
  - Steps to update the Lambda function with latest container via aws cli:
 > aws lambda update-function-code --function-name object-detection --image-uri <aws_account_id>.dkr.ecr.<aws_region>.amazonaws.com/object-detection-lambda:latest
 
+</details>
 
 ### 2.3. Creating a REST API via API Gateway
+
+<details>
 
 <b>Steps</b>: 
  - Create a new ```Rest API``` (e.g. ```object-detection-api```)
@@ -109,6 +118,8 @@ Advanced notes:
  - Integrate the Lambda function to the API
    - Notes: currently using proxy integration option unchecked
  - Deploy API with a specific stage (e.g. ```dev``` stage)
+
+</details>
 
 Example AWS API Endpoint:
 ```https://<api_id>.execute-api.<aws_region>.amazonaws.com/dev/detect```
