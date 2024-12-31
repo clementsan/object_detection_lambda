@@ -27,7 +27,7 @@ def load_model(model_uri: str):
 def object_detection(processor, model, image_bytes):
     """Perform object detection task"""
 
-    print('Object detection...')
+    print('Object detection prediction...')
     #url = "http://images.cocodataset.org/val2017/000000039769.jpg"
     #image = Image.open(requests.get(url, stream=True).raw)
 
