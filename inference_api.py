@@ -16,6 +16,10 @@ def arg_parser():
     # Add arguments
     parser.add_argument('--api', type=str, help='URL to server API (with endpoint)', required=True)
     parser.add_argument('--file', type=str, help='Path to the input image file', required=True)
+    parser.add_argument('--model', type=str, \
+                        choices=['detr-resnet-50', 'detr-resnet-101', 'yolos-tiny', 'yolos-small'], \
+                        help='Model type', \
+                        required=False)
     parser.add_argument('-v', '--verbose', action='store_true', help='Increase output verbosity')
     return parser
 
@@ -28,6 +32,12 @@ def main(args=None):
     if args.verbose:
         print(f'Input file: {args.file}')
 
+    # Retrieve model type
+    if args.model:
+        model_name = args.model
+    else:
+        model_name = ""
+
     # Load image
     with open(args.file, 'rb') as image_file:
         image_data = image_file.read()
@@ -37,7 +47,9 @@ def main(args=None):
 
     # Prepare the payload
     payload = {
-        'body': encoded_image
+        'body': encoded_image,
+        'isBase64Encoded': True,
+        'model': model_name,
     }
 
     # Send request to API
