@@ -46,21 +46,17 @@ def detect(image_path, model_id, threshold):
     # Encode the image data in base64
     encoded_image = base64.b64encode(image_bytes).decode('utf-8')
 
+    model_name = list_models_simple[model_id]
+
     # Requests arguments
     payload = {
         'body': encoded_image,
         'isBase64Encoded': True,
+        'model': model_name,
     }
     headers = {"Content-Type": "application/json"}
 
-    # Prepare the query string parameters
-    model_name = list_models_simple[model_id]
-    params = {
-        'model': model_name
-    }
-
     response = requests.post(API_endpoint, json=payload, headers=headers)
-    # response = requests.post(API_endpoint, json=payload, headers=headers, params=params)
 
     if response.status_code == 200:
         # Process the response

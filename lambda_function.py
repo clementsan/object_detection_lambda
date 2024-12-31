@@ -40,18 +40,11 @@ def detection_pipeline(model_type, image_bytes):
 def lambda_handler(event, context):
     logger.info(f"API event: {event}")
     try:
-        # Get the model name from the query string parameters
-        # Condition for local testing
-        # is_querystringparam = event.get('queryStringParameters')
-        # if is_querystringparam is not None:
-        #     model_query = event['queryStringParameters'].get('model', '').lower()
-        # else:
-        #     model_query = ""
-        # model_type = get_model_type(model_query)
-        # logger.info(f"Model query: {model_query}")
-        # logger.info(f"Model type: {model_type}")
-
-        model_type = get_model_type("")
+        # Retrieve model type
+        model_query = event.get('model', '')
+        model_type = get_model_type(model_query)
+        logger.info(f"Model query: {model_query}")
+        logger.info(f"Model type: {model_type}")
 
         # Decode the base64-encoded image data from the event
         image_data = event['body']
