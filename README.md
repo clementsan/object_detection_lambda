@@ -16,21 +16,21 @@ short_description: Object detection Lambda
  - Front-end: user interface via Gradio library
  - Back-end: use of AWS Lambda function to run deployed ML models
 
-## Local development
+## 1. Local development
 
 
-### 1. Building the docker image
+### 1.1. Building the docker image
 
 bash
 > docker build -t object-detection-lambda .
 
-### 2. Running the docker container locally
+### 1.2. Running the docker container locally
 
 bash
 
 > docker run --name object-detection-lambda-cont -p 8080:8080 object-detection-lambda
 
-### 3. Execution via user interface
+### 1.3. Execution via user interface
 Use of Gradio library for web interface
 
 <b>Note:</b> The environment variable ```AWS_API``` should point to the local container
@@ -42,7 +42,7 @@ Command line for execution:
 The Gradio web application should now be accessible at http://localhost:7860
 
 
-### 4. Execution via command line:
+### 1.4. Execution via command line:
 
 Example of a prediction request
 
@@ -60,9 +60,9 @@ python
 > --model yolos-small
 
 
-## Deployment to AWS
+## 2. Deployment to AWS
 
-### Pushing the docker container to AWS ECR
+### 2.1. Pushing the docker container to AWS ECR
 
 Steps:
  - Create new ECR Repository via aws console
@@ -82,9 +82,9 @@ Example: ```object-detection-lambda```
  - Push docker image to ECR
 > docker push <aws_account_id>.dkr.ecr.<aws_region>.amazonaws.com/object-detection-lambda:latest
 
-[Link to AWS Documention](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html)
+[Link to AWS ECR Documention](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html)
 
-### Creating and testing a Lambda function
+### 2.2. Creating and testing a Lambda function
 
 <b>Steps</b>: 
  - Create function from container image
@@ -100,8 +100,7 @@ Advanced notes:
 > aws lambda update-function-code --function-name object-detection --image-uri <aws_account_id>.dkr.ecr.<aws_region>.amazonaws.com/object-detection-lambda:latest
 
 
-### Creating a REST API via API Gateway
-
+### 2.3. Creating a REST API via API Gateway
 
 <b>Steps</b>: 
  - Create a new ```Rest API``` (e.g. ```object-detection-api```)
@@ -113,4 +112,22 @@ Advanced notes:
 
 Example AWS API Endpoint:
 ```https://<api_id>.execute-api.<aws_region>.amazonaws.com/dev/detect```
+
+
+### 2.4. Execution for deployed model
+
+Example of a prediction request
+
+bash
+> encoded_image=$(base64 -i ./tests/data/boats.jpg)
+
+> curl -X POST "https://<api_id>.execute-api.<aws_region>.amazonaws.com/dev/detect" \
+> -H "Content-Type: application/json" \
+> -d '{"body": "'"$encoded_image"'", "isBase64Encoded": true, "model":"yolos-small"}'
+
+python
+> python3 inference_api.py \
+> --api https://<api_id>.execute-api.<aws_region>.amazonaws.com/dev/detect \
+> --file ./tests/data/boats.jpg \
+> --model yolos-small
 
