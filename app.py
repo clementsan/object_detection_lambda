@@ -59,8 +59,8 @@ def detect(image_path, model_id, threshold):
         'model': model_name
     }
 
-    # response = requests.post(API_endpoint, json=payload, headers=headers)
-    response = requests.post(API_endpoint, json=payload, headers=headers, params=params)
+    response = requests.post(API_endpoint, json=payload, headers=headers)
+    # response = requests.post(API_endpoint, json=payload, headers=headers, params=params)
 
     if response.status_code == 200:
         # Process the response
