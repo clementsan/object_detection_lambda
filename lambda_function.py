@@ -38,7 +38,7 @@ def detection_pipeline(model_type, image_bytes):
 
 
 def lambda_handler(event, context):
-    logger.info(f"API event: {event}")
+    # logger.info(f"API event: {event}")
     try:
         # Retrieve model type
         model_query = event.get('model', '')
