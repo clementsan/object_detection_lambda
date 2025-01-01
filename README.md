@@ -16,21 +16,33 @@ short_description: Object detection Lambda
  - Front-end: user interface via Gradio library
  - Back-end: use of AWS Lambda function to run deployed ML models
 
+
+<b>Menu: </b>
+ - [Local development](#1-local-development)
+ - [AWS deployment](#2-deployment-to-aws)
+ - [Hugging Face deployment](#3-deployment-to-hugging-face)
+
+
 ## 1. Local development
 
+### 1.1. Build and run the Docker container
 
-### 1.1. Building the docker image
+<details>
+
+Step 1 - Building the docker image
 
 bash
 > docker build -t object-detection-lambda .
 
-### 1.2. Running the docker container locally
+Step 2 - Running the docker container locally
 
 bash
 
 > docker run --name object-detection-lambda-cont -p 8080:8080 object-detection-lambda
 
-### 1.3. Execution via user interface
+</details>
+
+### 1.2. Execution via user interface
 Use of Gradio library for web interface
 
 <b>Note:</b> The environment variable ```AWS_API``` should point to the local container
@@ -42,7 +54,7 @@ Command line for execution:
 The Gradio web application should now be accessible at http://localhost:7860
 
 
-### 1.4. Execution via command line:
+### 1.3. Execution via command line:
 
 Example of a prediction request
 
@@ -142,3 +154,12 @@ python
 > --file ./tests/data/boats.jpg \
 > --model yolos-small
 
+
+## 3. Deployment to Hugging Face
+
+This web application is available on Hugging Face
+
+Hugging Face space URL:
+https://huggingface.co/spaces/cvachet/object_detection_lambda
+
+Note: This space uses the ML model deployed on AWS Lambda
