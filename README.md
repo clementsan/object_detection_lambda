@@ -13,11 +13,15 @@ short_description: Object detection Lambda
 # Object detection via AWS Lambda
 
 <b>Aim: AI-driven object detection task</b>
+
+Architecture:
  - Front-end: user interface via Gradio library
- - Back-end: use of AWS Lambda function to run deployed ML models
+ - Back-end: use of AWS Lambda function to run deployed ML model
 
+You can try out our deployed [Hugging Face Space](https://huggingface.co/spaces/cvachet/object_detection_lambda
+)!
 
-<b>Menu: </b>
+<b>Table of contents: </b>
  - [Local development](#1-local-development)
  - [AWS deployment](#2-deployment-to-aws)
  - [Hugging Face deployment](#3-deployment-to-hugging-face)
