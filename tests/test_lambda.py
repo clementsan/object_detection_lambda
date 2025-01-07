@@ -28,7 +28,8 @@ def event():
 
     # Prepare the payload
     json_event = {
-        'body': encoded_image
+        'body': encoded_image,
+        'isBase64Encoded': True,
     }
 
     return json_event
