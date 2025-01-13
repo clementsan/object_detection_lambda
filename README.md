@@ -35,6 +35,7 @@ You can try out our deployed [Hugging Face Space](https://huggingface.co/spaces/
  - [Local development](#1-local-development)
  - [AWS deployment](#2-deployment-to-aws)
  - [Hugging Face deployment](#3-deployment-to-hugging-face)
+ - [Docker Hub deployment](#4-deployment-to-docker-hub)
 ----
 
 ## 1. Local development
@@ -177,3 +178,11 @@ Hugging Face space URL:
 https://huggingface.co/spaces/cvachet/object_detection_lambda
 
 Note: This space uses the ML model deployed on AWS Lambda
+
+
+## 4. Deployment to Docker Hub
+
+This web application is available on Docker Hub as a docker image
+
+URL:
+https://hub.docker.com/r/cvachet/object-detection-lambda
