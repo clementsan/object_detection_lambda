@@ -13,11 +13,15 @@ short_description: Object detection Lambda
 # Object detection via AWS Lambda
 
 [![](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/cvachet/object-detection-lambda)](https://hub.docker.com/repository/docker/cvachet/object-detection-lambda)
 [![code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/pylint-dev/pylint)
 
+![example workflow](https://github.com/clementsan/object_detection_lambda/actions/workflows/ci_python.yml/badge.svg)
+![example workflow](https://github.com/clementsan/object_detection_lambda/actions/workflows/publish_docker_image.yml/badge.svg)
+![example workflow](https://github.com/clementsan/object_detection_lambda/actions/workflows/sync_HFSpace.yml/badge.svg)
 
-<b>Aim: AI-driven object detection task</b>
+**Aim: AI-driven object detection task**
 
 Architecture:
  - Front-end: user interface via Gradio library
@@ -26,11 +30,12 @@ Architecture:
 You can try out our deployed [Hugging Face Space](https://huggingface.co/spaces/cvachet/object_detection_lambda
 )!
 
-<b>Table of contents: </b>
+----
+**Table of contents:**
  - [Local development](#1-local-development)
  - [AWS deployment](#2-deployment-to-aws)
  - [Hugging Face deployment](#3-deployment-to-hugging-face)
-
+----
 
 ## 1. Local development
 
@@ -54,7 +59,7 @@ bash
 ### 1.2. Execution via user interface
 Use of Gradio library for web interface
 
-<b>Note:</b> The environment variable ```AWS_API``` should point to the local container
+**Note:** The environment variable ```AWS_API``` should point to the local container
 > export AWS_API=http://localhost:8080
 
 Command line for execution:
@@ -113,7 +118,7 @@ Example: ```object-detection-lambda```
 
 <details>
 
-<b>Steps</b>: 
+**Steps**: 
  - Create function from container image
 
 Example name: ```object-detection```
@@ -132,7 +137,7 @@ Advanced notes:
 
 <details>
 
-<b>Steps</b>: 
+**Steps**: 
  - Create a new ```Rest API``` (e.g. ```object-detection-api```)
  - Add a new resource to the API (e.g. ```/detect```)
  - Add a ```POST``` method to the resource
